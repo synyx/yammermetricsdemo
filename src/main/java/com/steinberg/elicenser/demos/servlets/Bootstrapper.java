@@ -86,6 +86,7 @@ public class Bootstrapper implements ServletContextListener {
         try {
             mBeanServer.registerMBean(mBean, new ObjectName("com.stienberg.example:type=Hello"));
         } catch (MalformedObjectNameException | NullPointerException | InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -117,6 +118,7 @@ public class Bootstrapper implements ServletContextListener {
         try {
             mBeanServer.unregisterMBean(new ObjectName("com.example:type=Hello"));
         } catch (InstanceNotFoundException | MBeanRegistrationException | MalformedObjectNameException | NullPointerException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }
