@@ -30,13 +30,13 @@ public class ClientDemo {
         System.out.println("ClientDemo");
 
         createReporters();
-        
+
         createMetrics();
-        
+
         createDemoData();
-        
+
         showDemoDatainJMX(evictions);
-        
+
         System.out.println("Client Demo ended");
     }
 
@@ -56,7 +56,7 @@ public class ClientDemo {
                 .convertRatesTo(TimeUnit.SECONDS)
                 .convertDurationsTo(TimeUnit.MILLISECONDS)
                 .build();
-        
+
         jmxReporter = JmxReporter.forRegistry(metrics).build();
 
         reporter.start(1, TimeUnit.MINUTES);

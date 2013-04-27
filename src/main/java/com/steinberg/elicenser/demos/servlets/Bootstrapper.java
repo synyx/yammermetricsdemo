@@ -17,8 +17,6 @@ import com.yammer.metrics.servlets.HealthCheckServlet;
 import com.yammer.metrics.servlets.MetricsServlet;
 import java.lang.management.ManagementFactory;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanRegistrationException;
@@ -49,7 +47,7 @@ public class Bootstrapper implements ServletContextListener {
 
     private void registerHealthChecks() {
         healthChecks.register("demo", new HealthCheckDemo());
-        
+
         evictions = metrics.counter(MetricRegistry.name(HealthCheckDemo.class, "cache-evictions"));
         request = metrics.timer(MetricRegistry.name(ArithmeticDemoOperation.class, "calculation-duration"));
 
@@ -67,7 +65,7 @@ public class Bootstrapper implements ServletContextListener {
 
         addingStandardMBeanDemo();
 
-        //exposeFoundMBeanDomains();
+        exposeFoundMBeanDomains();
 
         registerHealthChecks();
 
@@ -77,6 +75,7 @@ public class Bootstrapper implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         jmx.stop();
+        jmxForWebapp.stop();
         removeStandardMBeanDemo();
 
     }
@@ -85,12 +84,8 @@ public class Bootstrapper implements ServletContextListener {
 
         final HelloMBean mBean = new Hello();
         try {
-            mBeanServer.registerMBean(mBean, new ObjectName("com.example:type=Hello"));
-        } catch (MalformedObjectNameException ex) {
-        } catch (NullPointerException ex) {
-        } catch (InstanceAlreadyExistsException ex) {
-        } catch (MBeanRegistrationException ex) {
-        } catch (NotCompliantMBeanException ex) {
+            mBeanServer.registerMBean(mBean, new ObjectName("com.stienberg.example:type=Hello"));
+        } catch (MalformedObjectNameException | NullPointerException | InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException ex) {
         }
     }
 
@@ -119,12 +114,9 @@ public class Bootstrapper implements ServletContextListener {
     }
 
     private void removeStandardMBeanDemo() {
-        try {        
+        try {
             mBeanServer.unregisterMBean(new ObjectName("com.example:type=Hello"));
-        } catch (InstanceNotFoundException ex) {
-        } catch (MBeanRegistrationException ex) {
-        } catch (MalformedObjectNameException ex) {
-        } catch (NullPointerException ex) {
+        } catch (InstanceNotFoundException | MBeanRegistrationException | MalformedObjectNameException | NullPointerException ex) {
         }
     }
 }
