@@ -9,4 +9,8 @@ package com.steinberg.elicenser.demos.mbean;
 public interface HelloMBean {
     
     void sayHello();
+    
+    void incrementCounter();
+    
+    
 }

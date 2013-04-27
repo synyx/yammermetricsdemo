@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>Metrics</servlet-name>
+        <servlet-name>MetricsAdmin</servlet-name>
         <servlet-class>com.yammer.metrics.servlets.AdminServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MetricsPing</servlet-name>
+        <servlet-class>com.yammer.metrics.servlets.PingServlet</servlet-class>
+    </servlet>
+<!--servlet>
+    <servlet-name>JmxMiniConsoleServlet</servlet-name>
+    <servlet-class>org.jminix.console.servlet.MiniConsoleServlet</servlet-class>
+</servlet-->
+    <servlet>
+        <servlet-name>MetricsThread</servlet-name>
+        <servlet-class>com.yammer.metrics.servlets.ThreadDumpServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Metrics</servlet-name>
+        <servlet-class>com.yammer.metrics.servlets.MetricsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MetricsHealthCheck</servlet-name>
+        <servlet-class>com.yammer.metrics.servlets.HealthCheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MetricsAdmin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+<!--servlet-mapping>
+        <servlet-name>JmxMiniConsoleServlet</servlet-name>
+        <url-pattern>/jminix</url-pattern>
+</servlet-mapping-->
+    <servlet-mapping>
+        <servlet-name>MetricsPing</servlet-name>
+        <url-pattern>/admin/ping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MetricsThread</servlet-name>
+        <url-pattern>/admin/threads</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Metrics</servlet-name>
-        <url-pattern>/metrics</url-pattern>
+        <url-pattern>/admin/metrics</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MetricsHealthCheck</servlet-name>
+        <url-pattern>/admin/healthcheck</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
