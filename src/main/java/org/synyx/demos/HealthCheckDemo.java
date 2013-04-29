@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  * Demo for a typical yammer Healthcheck which exposes its result to the
- * Adminservlet.
+ * Adminservlet per JSON and to JMX (if added to a registry).
  *
  * @author Joachim Arrasz arrasz@synyx.de
  */

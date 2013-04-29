@@ -17,5 +17,11 @@
         <p>Furthermore there is a com.demonstration.example entry with some operation.
             If you choose incrementCounter operation you can see some modifications 
             in com.example.demos.HealthCheckDemo.cache-evictions:counter</p>
+        <p>TODO:</p>
+        <ul>
+            <li>Add a Gauge Demo</li>
+            <li>Add a Histogram Demo</li>
+            <li>Add a Meter Demo</li>
+        </ul>
     </body>
 </html>
