@@ -1,7 +1,7 @@
 /*
  * 22.04.2013
  */
-package com.steinberg.elicenser.demos;
+package org.synyx.demos;
 
 /**
  * Simulates a pretty long arithmetic calculation.

@@ -1,8 +1,8 @@
 /*
  */
-package com.steinberg.elicenser.demos.mbean;
+package org.synyx.demos.listener.mbean;
 
-import com.steinberg.elicenser.demos.servlets.Bootstrapper;
+import org.synyx.demos.listener.Bootstrapper;
 
 /**
  * Just a MBean for demonstration Purposes of yammer.

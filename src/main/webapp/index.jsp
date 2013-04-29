@@ -5,9 +5,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Yammer Metrics Demo</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Welcome to yammer metrics Demo.</h1>
+        <a href="../YammerMetricsDemo/admin">Inspect JSON Support</a>
+        <p>To inspect JMX Support just open a tool like jVisualVM or jConsole and 
+            connect to Tomcats instance or the client instance (if you started ClientDemo.java)
+        </p>
+        <p>There you will find an entry called "Demonstration". Have Fun!</p>
+        <p>Furthermore there is a com.demonstration.example entry with some operation.
+            If you choose incrementCounter operation you can see some modifications 
+            in com.example.demos.HealthCheckDemo.cache-evictions:counter</p>
     </body>
 </html>

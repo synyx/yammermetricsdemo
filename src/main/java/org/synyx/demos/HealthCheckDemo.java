@@ -1,9 +1,8 @@
 /*
  * 18.04.2013
 */
-package com.steinberg.elicenser.demos;
+package org.synyx.demos;
 
-import com.yammer.metrics.MetricRegistry;
 import com.yammer.metrics.health.HealthCheck;
 import java.util.Random;
 

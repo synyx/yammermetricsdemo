@@ -1,6 +1,6 @@
 /*
  */
-package com.steinberg.elicenser.demos.mbean;
+package org.synyx.demos.listener.mbean;
 
 /**
  *

@@ -1,7 +1,7 @@
 /*
  * 19.04.2013
  */
-package com.steinberg.elicenser.demos;
+package org.synyx.demos;
 
 import com.yammer.metrics.ConsoleReporter;
 import com.yammer.metrics.Counter;
@@ -17,13 +17,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class ClientDemo {
 
-    static final MetricRegistry metrics = new MetricRegistry("Steinberg");
+    static final MetricRegistry metrics = new MetricRegistry("Demonstration");
     static ConsoleReporter reporter;
     static JmxReporter jmxReporter;
     static Counter evictions;
     static Timer request;
 
     /**
+     * Boots client only metrics.
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {

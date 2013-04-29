@@ -1,12 +1,12 @@
 /*
  * 18.04.2013
  */
-package com.steinberg.elicenser.demos.servlets;
+package org.synyx.demos.listener;
 
-import com.steinberg.elicenser.demos.ArithmeticDemoOperation;
-import com.steinberg.elicenser.demos.HealthCheckDemo;
-import com.steinberg.elicenser.demos.mbean.Hello;
-import com.steinberg.elicenser.demos.mbean.HelloMBean;
+import org.synyx.demos.ArithmeticDemoOperation;
+import org.synyx.demos.HealthCheckDemo;
+import org.synyx.demos.listener.mbean.Hello;
+import org.synyx.demos.listener.mbean.HelloMBean;
 import com.yammer.metrics.Counter;
 import com.yammer.metrics.JmxReporter;
 import com.yammer.metrics.MetricRegistry;
@@ -35,6 +35,7 @@ import javax.servlet.annotation.WebListener;
  */
 @WebListener
 public class Bootstrapper implements ServletContextListener {
+    private static final String MBEAN_NAME = "com.demonstration.example:type=Hello";
 
     private final MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
     private HealthCheckRegistry healthChecks;
@@ -53,6 +54,9 @@ public class Bootstrapper implements ServletContextListener {
 
     }
 
+    /**
+     * THIS is just a little Helper for easy demonstration purposes.
+     */
     public static void createDemoDataInJmx() {
         evictions.inc(3);
         request.update(471, TimeUnit.SECONDS);
@@ -84,16 +88,16 @@ public class Bootstrapper implements ServletContextListener {
 
         final HelloMBean mBean = new Hello();
         try {
-            mBeanServer.registerMBean(mBean, new ObjectName("com.stienberg.example:type=Hello"));
+            mBeanServer.registerMBean(mBean, new ObjectName(MBEAN_NAME));
         } catch (MalformedObjectNameException | NullPointerException | InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage()); //just a demo, so it's okay
         }
     }
 
-    public void createAndBuildRegistries(ServletContextEvent sce) {
+    private void createAndBuildRegistries(ServletContextEvent sce) {
         healthChecks = new HealthCheckRegistry();
-        metrics = new MetricRegistry("SteinbergMetrics");
-        metricsForWebapp = new MetricRegistry("SteinbergWebapp");
+        metrics = new MetricRegistry("DemonstrationMetrics");
+        metricsForWebapp = new MetricRegistry("DemonstrationWebapp");
 
         jmx = JmxReporter.forRegistry(metrics).build();
         jmxForWebapp = JmxReporter.forRegistry(metricsForWebapp).build();
@@ -116,9 +120,9 @@ public class Bootstrapper implements ServletContextListener {
 
     private void removeStandardMBeanDemo() {
         try {
-            mBeanServer.unregisterMBean(new ObjectName("com.example:type=Hello"));
+            mBeanServer.unregisterMBean(new ObjectName(MBEAN_NAME));
         } catch (InstanceNotFoundException | MBeanRegistrationException | MalformedObjectNameException | NullPointerException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage()); //just a demo, so it's okay
         }
     }
 }
