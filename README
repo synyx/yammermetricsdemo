@@ -1,0 +1,3 @@
+Just compile and deploy the App (e.g. a Tomcat or Jetty). Afterwards jump to landing page.
+
+(probably) http://localhost:8080/YammerMetricsDemo/
